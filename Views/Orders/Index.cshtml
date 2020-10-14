@@ -1,0 +1,92 @@
+﻿@model IEnumerable<AbhayTradingCompanyInterface.Models.Order>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Orders</h1>
+
+<p>
+    <a asp-action="Create">Create New Order</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.timestamp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.customer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.shipto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.broker)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.millname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.material)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.saudarate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.billrate)
+            </th>
+          
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.timestamp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.customer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.shipto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.broker)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.millname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.material)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.saudarate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.billrate)
+            </td>
+          
+            <td>
+
+
+                @Html.ActionLink("Details", "Details", new { id = item.id }) 
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

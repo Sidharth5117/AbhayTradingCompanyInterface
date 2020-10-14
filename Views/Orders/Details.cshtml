@@ -1,0 +1,90 @@
+﻿@model AbhayTradingCompanyInterface.Models.Order
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Order</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.id)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.timestamp)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.timestamp)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.customer)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.customer)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.shipto)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.shipto)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.broker)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.broker)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.millname)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.millname)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.material)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.material)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.quantity)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.quantity)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.saudarate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.saudarate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.billrate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.billrate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.entryby)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.entryby)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.remarks)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.remarks)
+        </dd>
+    </dl>
+</div>
+<div>
+  
+    <a asp-action="Index">Back to List</a>
+</div>

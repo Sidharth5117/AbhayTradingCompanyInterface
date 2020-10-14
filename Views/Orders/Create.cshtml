@@ -1,0 +1,231 @@
+﻿@model AbhayTradingCompanyInterface.Models.Order
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Order</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="customer" class="control-label"></label>
+                <input asp-for="customer" id="customer" class="form-control" />
+                <span asp-validation-for="customer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="shipto" class="control-label"></label>
+                <input asp-for="shipto" class="form-control" />
+                <span asp-validation-for="shipto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="broker" class="control-label"></label>
+                <input asp-for="broker" class="form-control" />
+                <span asp-validation-for="broker" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="millname" class="control-label"></label>
+                <input asp-for="millname" id="millname" class="form-control" />
+                <span asp-validation-for="millname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="material" class="control-label"></label>
+                <input asp-for="material" class="form-control" />
+                <span asp-validation-for="material" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="quantity" class="control-label"></label>
+                <input asp-for="quantity" class="form-control" />
+                <span asp-validation-for="quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="saudarate" class="control-label"></label>
+                <input asp-for="saudarate" class="form-control" />
+                <span asp-validation-for="saudarate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="billrate" class="control-label"></label>
+                <input asp-for="billrate" class="form-control" />
+                <span asp-validation-for="billrate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="entryby" class="control-label"></label>
+                <input asp-for="entryby" class="form-control" />
+                <span asp-validation-for="entryby" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="remarks" class="control-label"></label>
+                <input asp-for="remarks" class="form-control" />
+                <span asp-validation-for="remarks" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+
+
+
+    
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.0.min.js" type="text/javascript"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/jquery-ui.min.js" type="text/javascript"></script>
+    <link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/themes/blitzer/jquery-ui.css"
+          rel="Stylesheet" type="text/css" />
+
+    <script>
+        $(document).ready(function () {
+
+
+            $("#millname").autocomplete({
+                source: function (request, response) {
+
+                    $.ajax({
+                        url: '@Url.Action("GetMills")',
+                        data: { Prefix: request.term },
+                        dataType: "json",
+                        type: "POST",
+
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return {
+                                    label: item.millname,
+                                    value: item.millname
+                                };
+                            }));
+                        },
+                        error: function (response) {
+                            alert(response.responseText);
+                        },
+                        failure: function (response) {
+                            alert(response.responseText);
+                        }
+                    });
+                },
+
+                minLength: 1   // MINIMUM 1 CHARACTER TO START WITH.
+            });
+
+
+             $("#customer").autocomplete({
+                source: function (request, response) {
+
+                    $.ajax({
+                        url: '@Url.Action("GetCustomers")',
+                        data: { Prefix: request.term },
+                        dataType: "json",
+                        type: "POST",
+
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return {
+                                    label: item.customer,
+                                    value: item.customer
+                                };
+                            }));
+                        },
+                        error: function (response) {
+                            alert(response.responseText);
+                        },
+                        failure: function (response) {
+                            alert(response.responseText);
+                        }
+                    });
+                },
+
+                minLength: 1   // MINIMUM 1 CHARACTER TO START WITH.
+            });
+
+
+
+
+
+
+
+              $("#broker").autocomplete({
+                source: function (request, response) {
+
+                    $.ajax({
+                        url: '@Url.Action("GetBrokers")',
+                        data: { Prefix: request.term },
+                        dataType: "json",
+                        type: "POST",
+
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return {
+                                    label: item.broker,
+                                    value: item.broker
+                                };
+                            }));
+                        },
+                        error: function (response) {
+                            alert(response.responseText);
+                        },
+                        failure: function (response) {
+                            alert(response.responseText);
+                        }
+                    });
+                },
+
+                minLength: 1   // MINIMUM 1 CHARACTER TO START WITH.
+            });
+
+
+
+
+
+              $("#shipto").autocomplete({
+                source: function (request, response) {
+
+                    $.ajax({
+                        url: '@Url.Action("GetShipTo")',
+                        data: { Prefix: request.term },
+                        dataType: "json",
+                        type: "POST",
+
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return {
+                                    label: item.shipto,
+                                    value: item.shipto
+                                };
+                            }));
+                        },
+                        error: function (response) {
+                            alert(response.responseText);
+                        },
+                        failure: function (response) {
+                            alert(response.responseText);
+                        }
+                    });
+                },
+
+                minLength: 1   // MINIMUM 1 CHARACTER TO START WITH.
+            });
+
+
+
+
+        })
+    </script>
+
+
+
+
+
+
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

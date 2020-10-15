@@ -20,12 +20,14 @@ namespace AbhayTradingCompanyInterface.Controllers
         List<Customer> customers = new List<Customer>();
         List<Broker> brokers = new List<Broker>();
         List<Shipto> shipto = new List<Shipto>();
+        List<Material> materials = new List<Material>();
+
 
 
         public OrdersController()
         {
 
-            var task1 = Task.Run(async () => {
+            var task = Task.Run(async () => {
 
              
                 using (var httpClient = new HttpClient())
@@ -36,6 +38,18 @@ namespace AbhayTradingCompanyInterface.Controllers
                         this.millnames = JsonConvert.DeserializeObject<List<Millname>>(apiResponse);
                     }
                 }
+
+
+                using (var httpClient = new HttpClient())
+                {
+                    using (var response = await httpClient.GetAsync("https://abhaytradingcompanyapi.herokuapp.com/api/materials"))
+                    {
+                        string apiResponse = await response.Content.ReadAsStringAsync();
+                        this.materials = JsonConvert.DeserializeObject<List<Material>>(apiResponse);
+                    }
+                }
+
+
 
 
 
@@ -73,7 +87,7 @@ namespace AbhayTradingCompanyInterface.Controllers
 
 
             });
-            task1.Wait();
+            task.Wait();
         }
 
 
@@ -205,7 +219,7 @@ namespace AbhayTradingCompanyInterface.Controllers
 
                 var result = (from a in this.millnames
 
-                              where a.millname.Contains(prefix)
+                              where a.millname.Contains(prefix.ToUpper())
 
                               select new
                               {
@@ -228,7 +242,7 @@ namespace AbhayTradingCompanyInterface.Controllers
 
             var result = (from a in this.customers
 
-                          where a.customer.Contains(prefix)
+                          where a.customer.Contains(prefix.ToUpper())
 
                           select new
                           {
@@ -237,6 +251,30 @@ namespace AbhayTradingCompanyInterface.Controllers
             return Json(result);
 
         }
+
+
+
+
+
+        [HttpPost]
+        public async Task<JsonResult> GetMaterials(string prefix)
+        {
+
+
+
+
+            var result = (from a in this.materials
+
+                          where a.material.Contains(prefix.ToUpper())
+
+                          select new
+                          {
+                              a.material
+                          });
+            return Json(result);
+
+        }
+
 
 
 
@@ -250,7 +288,7 @@ namespace AbhayTradingCompanyInterface.Controllers
 
             var result = (from a in this.shipto
 
-                          where a.shipto.Contains(prefix)
+                          where a.shipto.Contains(prefix.ToUpper())
 
                           select new
                           {
@@ -271,7 +309,7 @@ namespace AbhayTradingCompanyInterface.Controllers
 
             var result = (from a in this.brokers
 
-                          where a.broker.Contains(prefix)
+                          where a.broker.Contains(prefix.ToUpper())
 
                           select new
                           {
